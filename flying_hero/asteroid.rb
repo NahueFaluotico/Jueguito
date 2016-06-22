@@ -1,11 +1,9 @@
 require 'gosu'
 
-class Asteroid
-  def initialize
+class Asteroid < FlyingItem
 
-  end
-  def draw
-
+  def self.image_path
+    'assets/images/candy.png'
   end
 
 end

@@ -2,6 +2,8 @@ require "gosu"
 require_relative "background"
 require_relative 'hero'
 require_relative "candy"
+require_relative "asteroid_big"
+require_relative "asteroid_small"
 
 class Game < Gosu::Window
   def initialize
@@ -10,12 +12,18 @@ class Game < Gosu::Window
     @background = Background.new
     @hero = Hero.new
     @candy = Candy.new(self)
+    set_asteroid
   end
 
+
+
   def draw
+
     @background.draw
     @hero.draw
     @candy.draw
+    @asteroid.draw
+
   end
 
   def button_down(id)
@@ -39,6 +47,15 @@ class Game < Gosu::Window
     if @candy.x < 0
       @candy.reset!(self)
     end
+    @asteroid.move!
+    if @asteroid.x < 0
+      set_asteroid
 
+    end
+  end
+  def set_asteroid
+
+    @asteroid = @asteroid && @asteroid.instance_of?(AsteroidBig) ?
+    AsteroidSmall.new(self) : AsteroidBig.new(self)
   end
 end

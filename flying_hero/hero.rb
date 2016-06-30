@@ -19,13 +19,13 @@ class Hero
   end
   def move_up!
     if @y > 0
-    @y -= 5
+    @y -= 15
     end
   end
   def move_down!(window_height)
 
     if (@y + @height)  <= window_height
-    @y += 5
+    @y += 15
     end
   end
 end

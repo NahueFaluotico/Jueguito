@@ -5,6 +5,7 @@ require_relative "candy"
 require_relative "asteroid_big"
 require_relative "asteroid_small"
 require_relative "score_board"
+
 class Game < Gosu::Window
   def initialize
     super(900, 550, fullscreen: false)
@@ -52,6 +53,12 @@ class Game < Gosu::Window
     @asteroid.move!
     if @asteroid.x < 0
       set_asteroid
+
+    end
+    if @hero.bumped_into?(@candy)
+
+      @candy.reset!(self)
+      @scoreboard.update_score!(@candy.points)
 
     end
   end

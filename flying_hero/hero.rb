@@ -28,4 +28,11 @@ class Hero
     @y += 15
     end
   end
+  def bumped_into?(object)
+    if (@y > object.y + object.height) || (@y + @height < object.y) || (@x > object.x + object.width) || (@x + @width < object.x)
+      false
+    else
+      true
+    end
+  end
 end
